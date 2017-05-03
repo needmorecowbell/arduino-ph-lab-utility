@@ -32,11 +32,11 @@ void setup() {                                        //set up the hardware
 
 
 void serialEvent() {                                  //if the hardware serial port_0 receives a char
+  
   char inchar = (char)Serial.read();                  //get the char we just received
-  inputstring += inchar;                              //add it to the inputString
-  if (inchar == '\r') {                               
-    input_stringcomplete = true;                      //if the incoming character is a <CR>, set the flag
-  }
+  
+  inputstring += '\r';                              //add it to the inputString
+  input_stringcomplete=true;
 }
 
 void loop() {                                         //here we go...
@@ -49,6 +49,7 @@ void loop() {                                         //here we go...
 
   if (myserial.available() > 0) {                     //if we see that the Atlas Scientific product has sent a character.
     char inchar = (char)myserial.read();              //get the char we just received
+    
     sensorstring += inchar;
     if (inchar == '\r') {
       sensor_stringcomplete = true;                   //if the incoming character is a <CR>, set the flag
@@ -58,6 +59,7 @@ void loop() {                                         //here we go...
 
   if (sensor_stringcomplete) {                        //if a string from the Atlas Scientific product has been received in its entirety
     Serial.println(sensorstring);                     //send that string to the PC's serial monitor
+    
     sensorstring = "";                                //clear the string:
     sensor_stringcomplete = false;                    //reset the flag used to tell if we have received a completed string from the Atlas Scientific product
     delay(delayTime);

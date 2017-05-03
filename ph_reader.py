@@ -37,7 +37,7 @@ def phWizard():
                         print("[+] Logging serial for: "+str(port)+":"+str(baudrate))
                         print("[+}\tDuration: "+str(duration)+"s\tSampling Rate: "+str(delayTime)+"ms")
                         while(s.is_open and curMilliSecond <= (int(duration)*1000)):
-                                result= str(s.readline())
+                                result= str(s.readline()).strip('\\b\'rn')  #sanitizes code of any escape characters or single quotes
                                 print("T="+str(curMilliSecond)+"ms:\t"+result)
                                 log.write(str(curMilliSecond)+";"+result+"\n")
                                 time.sleep(int(delayTime)/1000)

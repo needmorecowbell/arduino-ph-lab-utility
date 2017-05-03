@@ -16,11 +16,13 @@ def phWizard():
         print("Developed by: Adam Musciano")
         print("***********************************\n")
 
-
+        print("NOTICE: When using the ezo PH chip in your circuit, maximum response time is 1000ms between samplings")
+        print("        Time samplng may be innacurate if retrieved faster than the max response time. \n\n")
+        
         #Get inputs
         port = input("Enter port address (ex: COM11): ")                        
         baudrate=int(input("Enter buadrate(ex: 9600): "))                       
-        delayTime=int(input("milliseconds of delay between samplings: "))
+        delayTime=int(input("milliseconds of delay between samplings(ex: 1000): "))
         duration=int(input("seconds of sampling duration: "))
         filename=str(datetime.datetime.now().strftime('%m-%d-%Y_%H-%M'))
         log= open(filename+"_log.csv","w")
